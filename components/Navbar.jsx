@@ -3,7 +3,7 @@ import Image from 'next/image';
 import useAuthCtx from '../stores/authContext.js';
 
 export default function Navbar() {
-  const { user, login, logout } = useAuthCtx();
+  const { user, login, logout, authReady } = useAuthCtx();
   console.log(user);
 
   return (
@@ -18,13 +18,13 @@ export default function Navbar() {
           <li>
             <Link href='/guides'>Guides</Link>
           </li>
-          {user && <li>{user.email}</li>}
-          {!user && (
+          {authReady && !user && (
             <li className='btn' onClick={login}>
               <Link href='/guides'>Login / Signup</Link>
             </li>
           )}
-          {user && (
+          {authReady && user && <li>{user.email}</li>}
+          {authReady && user && (
             <li className='btn' onClick={logout}>
               <Link href='/guides'>Logot</Link>
             </li>
