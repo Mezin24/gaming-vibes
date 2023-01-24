@@ -18,6 +18,7 @@ export default function Navbar() {
           <li>
             <Link href='/guides'>Guides</Link>
           </li>
+          {user && <li>{user.email}</li>}
           {!user && (
             <li className='btn' onClick={login}>
               <Link href='/guides'>Login / Signup</Link>
